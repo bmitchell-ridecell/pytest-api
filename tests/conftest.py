@@ -1,3 +1,12 @@
-import sys
-import os
-sys.path.append(os.path.join(os.path.dirname(__file__), 'helpers'))
+import pytest
+from tests.helpers import logger
+from tests.helpers import api_request_helper
+
+def pytest_runtest_setup():
+    logger.init_logg()
+    api_request_helper.init_http_client()
+
+def pytest_runtest_teardown():
+    logger.logg("\nteardown extras go here\n")
+
+
