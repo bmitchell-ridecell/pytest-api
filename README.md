@@ -25,4 +25,10 @@ deactivate
 
 #### Run all tests:
 
-py.test 
+py.test -s
+
+OR 
+
+./run_tests.sh
+
+
