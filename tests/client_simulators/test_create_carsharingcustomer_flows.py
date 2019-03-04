@@ -1,5 +1,6 @@
 from tests.apis import authenticate
 from tests.apis import carsharingcustomers
+from tests.apis import cards
 import config
 import requests
 
@@ -23,6 +24,12 @@ def test_create_carsharing_customer_MIV_express_us():
 
     response = carsharingcustomers.patch_carsharingcustomer(customer_id, auth_token, "Fred", "Smith", "")
     assert response.status_code == 200
+
+    cards.post_fake_stripe_card(customer_id, auth_token)
+    assert response.status_code == 201
+
+    
+
 
 
 
