@@ -23,4 +23,3 @@ def test_admin_gets_site_config():
 def test_customer_cannot_get_site_config():
     assert 1 == 1
 
-

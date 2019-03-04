@@ -1,6 +1,8 @@
 from tests.apis import authenticate
 from tests.apis import carsharingcustomers
 from tests.apis import cards
+from tests.apis import drivers_licence
+
 import config
 import requests
 
@@ -25,8 +27,15 @@ def test_create_carsharing_customer_MIV_express_us():
     response = carsharingcustomers.patch_carsharingcustomer(customer_id, auth_token, "Fred", "Smith", "")
     assert response.status_code == 200
 
-    cards.post_fake_stripe_card(customer_id, auth_token)
+    response = cards.post_fake_stripe_card(customer_id, auth_token)
     assert response.status_code == 201
+
+    response = drivers_licence.post_random_drivers_license(customer_id, auth_token)
+    assert response.status_code == 200
+    print(response.json())
+    assert int(response.json()['license']['license_number']) > 0
+
+
 
 
 
