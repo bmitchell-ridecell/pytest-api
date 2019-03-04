@@ -28,7 +28,7 @@ def test_create_carsharing_customer_MIV_express_us():
     cards.post_fake_stripe_card(customer_id, auth_token)
     assert response.status_code == 201
 
-    
+
 
 
 
