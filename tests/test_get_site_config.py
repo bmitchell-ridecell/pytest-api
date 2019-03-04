@@ -19,13 +19,6 @@ def test_admin_gets_site_config():
     assert json_site_config['id'] > 0
 
 
-def test_non_user_cannot_get_auth_token():
-    username = config.get('customer_username')
-    password = config.get('customer_password')
-
-    response = authenticate.post_authenticate(username, password)
-    assert response.status_code == 400
-
 # TODO
 def test_customer_cannot_get_site_config():
     assert 1 == 1

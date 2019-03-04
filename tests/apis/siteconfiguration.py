@@ -2,7 +2,7 @@ from tests.helpers import logger
 import requests
 import config
 
-siteconfiguration_url = config.base_url + '/api/v2/siteconfiguration/1/'
+siteconfiguration_url = config.get('base_url') + '/api/v2/siteconfiguration/1/'
 
 def get_siteconfiguration(auth_token):
     logger.logg("About to call config")
