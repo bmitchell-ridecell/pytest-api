@@ -13,21 +13,7 @@ Install required packages at root of project:
 ./setup.sh
 
 
-### Using
-
-Activate virtual environment:
-
-./activate.sh  (source venv/bin/activate)
-
-Exit virtual environment:
-
-deactivate
-
 #### Run all tests:
-
-py.test -s
-
-OR 
 
 ./run_tests.sh
 
