@@ -2,6 +2,7 @@ from tests.helpers import logger
 import requests
 import config
 
+
 authenticate_url = config.get('base_url') + '/api/v2/authenticate/'
 
 

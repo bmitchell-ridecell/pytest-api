@@ -1,7 +1,6 @@
 from tests.helpers import logger
 import requests
 import config
-import random
 
 
 def post_fake_stripe_card(customer_id, auth_token):

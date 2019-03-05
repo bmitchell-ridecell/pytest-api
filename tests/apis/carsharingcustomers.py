@@ -1,7 +1,7 @@
 from tests.helpers import logger
 import requests
 import config
-import random
+
 
 carsharingcustomers_url = config.get('base_url') + '/api/v2/carsharingcustomers'
 
