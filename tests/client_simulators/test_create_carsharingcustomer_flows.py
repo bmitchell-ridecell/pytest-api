@@ -4,12 +4,14 @@ from tests.apis import cards
 from tests.apis import drivers_licence
 from tests.apis import address
 from tests.apis import accept_terms_of_service
+from tests.apis import miv_document_specifications
 import config
-import requests
 
 ###############################################################################
 #
-#   Feature:  Simulate mobile application flow for creating carsharingcustomer
+#   Feature:  Massiv app api flow simulation for creating carsharingcustomer
+#             with Manual Identity Verification (MIV) image uploads
+#             and Dispatcher approval from Ops Center
 #
 ###############################################################################
 
@@ -58,7 +60,9 @@ def test_create_carsharing_customer_MIV_express_us():
     assert response.status_code == 200
 
     # GET MiV doc specifications
-
+    response = miv_document_specifications.get_miv_document_specifications(auth_token)
+    assert response.status_code == 200
+    print(response.json())
 
     # POST MiV docs
 
