@@ -1,5 +1,4 @@
 import configparser
-import os
 import random
 
 config = configparser.ConfigParser()

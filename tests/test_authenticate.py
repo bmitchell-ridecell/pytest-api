@@ -1,7 +1,5 @@
-from tests.apis import authenticate
-from tests.apis import siteconfiguration
+from tests.helpers.apis import authenticate
 import config
-import requests
 
 
 def test_existing_customer_get_auth_token():

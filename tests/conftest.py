@@ -1,7 +1,5 @@
-import pytest
 from tests.helpers import logger
 from tests.helpers import api_request_helper
-import config
 
 
 def pytest_runtest_setup():

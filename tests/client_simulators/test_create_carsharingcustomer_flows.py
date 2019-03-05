@@ -1,10 +1,5 @@
-from tests.apis import authenticate
-from tests.apis import carsharingcustomers
-from tests.apis import cards
-from tests.apis import drivers_licence
-from tests.apis import address
-from tests.apis import accept_terms_of_service
-from tests.apis import miv_document_specifications
+from tests.helpers.apis import carsharingcustomers, address, miv_document_specifications, accept_terms_of_service
+from tests.helpers.apis import cards, drivers_licence, authenticate
 import config
 
 ###############################################################################
