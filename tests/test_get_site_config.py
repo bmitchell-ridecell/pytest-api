@@ -1,4 +1,4 @@
-from tests.helpers.apis import authenticate, siteconfiguration
+from apis import authenticate, siteconfiguration
 import config
 
 

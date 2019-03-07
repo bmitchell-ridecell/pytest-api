@@ -1,5 +1,5 @@
-from tests.helpers.apis import carsharingcustomers, address, miv_document_specifications, accept_terms_of_service
-from tests.helpers.apis import cards, drivers_licence, authenticate
+from apis import address, accept_terms_of_service, authenticate, carsharingcustomers, miv_document_specifications, \
+    cards, drivers_licence
 import config
 
 ###############################################################################

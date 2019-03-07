@@ -1,4 +1,4 @@
-from tests.helpers.apis import authenticate
+from apis import authenticate
 import config
 
 
