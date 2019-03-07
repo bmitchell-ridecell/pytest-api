@@ -1,4 +1,4 @@
-from tests.helpers import logger
+from loggings import logger
 import requests
 import config
 
