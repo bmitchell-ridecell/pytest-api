@@ -1,5 +1,5 @@
 from apis import authenticate, siteconfiguration
-import config
+from configs import config
 
 
 #############################################################################

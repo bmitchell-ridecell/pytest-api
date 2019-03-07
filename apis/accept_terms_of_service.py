@@ -1,6 +1,6 @@
 from loggings import logger
 import requests
-import config
+from configs import config
 
 
 def accept_tos_url_for_customer(customer_id):

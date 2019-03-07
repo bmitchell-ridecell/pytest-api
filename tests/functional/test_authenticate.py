@@ -1,5 +1,5 @@
 from apis import authenticate
-import config
+from configs import config
 
 
 def test_existing_customer_get_auth_token():

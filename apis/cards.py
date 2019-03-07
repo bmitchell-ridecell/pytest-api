@@ -1,5 +1,5 @@
 import requests
-import config
+from configs import config
 
 
 def post_fake_stripe_card(customer_id, auth_token):

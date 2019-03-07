@@ -1,6 +1,5 @@
 import requests
-import config
-
+from configs import config
 
 dl_defaults = {"date_of_birth": "1985-05-08",
                "license_expiry_date": "2022-04-05",

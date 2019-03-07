@@ -1,7 +1,6 @@
 from loggings import logger
 import requests
-import config
-
+from configs import config
 
 address_defaults = {"lat":0,
                     "lng":0,

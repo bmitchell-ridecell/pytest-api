@@ -1,6 +1,7 @@
 from apis import address, accept_terms_of_service, authenticate, carsharingcustomers, miv_document_specifications, \
     cards, drivers_licence
-import config
+from configs import config
+
 
 ###############################################################################
 #

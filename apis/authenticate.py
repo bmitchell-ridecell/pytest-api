@@ -1,7 +1,6 @@
 from loggings import logger
 import requests
-import config
-
+from configs import config
 
 authenticate_url = config.get('base_url') + '/api/v2/authenticate/'
 
