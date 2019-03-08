@@ -1,6 +1,5 @@
 import requests
-import config
-
+from configs import config
 
 siteconfiguration_url = config.get('base_url') + '/api/v2/siteconfiguration/1/'
 

@@ -1,6 +1,5 @@
 import requests
-import config
-
+from configs import config
 
 miv_document_specification_url = config.get('base_url') + '/api/v3/manual_identity_verification_document_specifications/'
 

@@ -1,7 +1,6 @@
-from tests.helpers import logger
+from loggings import logger
 import requests
-import config
-
+from configs import config
 
 carsharingcustomers_url = config.get('base_url') + '/api/v2/carsharingcustomers'
 
@@ -16,7 +15,7 @@ def post_carsharingcustomer(email, password, phone_number):
 
 
 def post_random_carsharingcustomer():
-    email = "brad+pytest"+config.rand_x_digit_num(5)+"@ridecell.com",
+    email = "brad+pytest" + config.rand_x_digit_num(5) + "@ridecell.com",
     password = config.get('default_password')
     phone_number = config.rand_x_digit_num(10, False)
     response = post_carsharingcustomer(email, password, phone_number)

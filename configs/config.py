@@ -2,7 +2,7 @@ import configparser
 import random
 
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read('configs/config.ini')
 
 # TODO add command line arg for target environment
 env_name = "DARWIN-QA"

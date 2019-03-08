@@ -1,5 +1,5 @@
-from tests.helpers.apis import authenticate, siteconfiguration
-import config
+from apis import authenticate, siteconfiguration
+from configs import config
 
 
 #############################################################################
