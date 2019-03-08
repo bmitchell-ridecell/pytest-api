@@ -11,7 +11,7 @@ class RadioStation:
         return self.radio_station_id
 
     @radio_station_id.setter
-    def id(self, value):
+    def radio_station_id(self, value):
         self.radio_station_id = value
 
     @property
@@ -19,7 +19,7 @@ class RadioStation:
         return self.frequency
 
     @frequency.setter
-    def id(self, value):
+    def frequency(self, value):
         self.frequency = value
 
     @property
