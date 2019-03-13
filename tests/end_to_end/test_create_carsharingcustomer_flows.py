@@ -1,7 +1,9 @@
 from apis import address, accept_terms_of_service, authenticate, carsharingcustomers, miv_document_specifications, \
     cards, drivers_licence
 from configs import config
+import json
 
+from factories import factory
 
 ###############################################################################
 #
@@ -14,49 +16,49 @@ from configs import config
 
 def test_create_carsharing_customer_MIV_express_us():
 
+    carsharing_customer = factory.create_random_customer("carsharing_full")
     # POST carsharing customer
-    response = carsharingcustomers.post_random_carsharingcustomer()
-    print(response.json())
-    customer_id = response.json()['id']
-    username = response.json()['user']['username']
-    password = config.get('default_password')
+    response = carsharingcustomers.post_random_carsharingcustomer(carsharing_customer)
+    carsharing_customer.customer_id = response.json()['id']
 
     # Get auth token
-    auth_token = authenticate.auth_token(username, password)
+    auth_token = authenticate.auth_token(carsharing_customer)
     assert auth_token is not None
+    carsharing_customer.auth_token = auth_token
 
+    carsharing_customer2 = factory.create_random_customer("carsharing_minimal")
     # Add first, last name
-    response = carsharingcustomers.patch_carsharingcustomer(customer_id, auth_token, "Fred", "Smith", "")
+    response = carsharingcustomers.patch_carsharingcustomer(carsharing_customer, carsharing_customer2)
     assert response.status_code == 200
 
     # Add credit card
-    response = cards.post_fake_stripe_card(customer_id, auth_token)
+    response = cards.post_fake_stripe_card(carsharing_customer)
     assert response.status_code == 201
 
     # Add drivers license
-    response = drivers_licence.post_random_drivers_license(customer_id, auth_token)
+    response = drivers_licence.post_random_drivers_license(carsharing_customer)
     assert response.status_code == 200
     print(response.json())
     assert int(response.json()['license']['license_number']) > 0
     assert int(response.json()['license']['is_license_verified']) == 0
-    drivers_license_num = int(response.json()['license']['license_number'])
+    carsharing_customer.driver_license_number = int(response.json()['license']['license_number'])
 
     # PUT license verified
-    response = drivers_licence.put_drivers_license_verified(customer_id, auth_token, drivers_license_num)
+    response = drivers_licence.put_drivers_license_verified(carsharing_customer)
     print(response.json())
     assert int(response.json()['license']['is_license_verified']) == 1
     # TODO does/should this require admin user auth token?
 
     # POST Address
-    response = address.post_address(customer_id, auth_token)
+    response = address.post_address(carsharing_customer)
     assert response.status_code == 200
 
     # POST Accept ToS
-    response = accept_terms_of_service.post_accept_tos(customer_id, auth_token)
+    response = accept_terms_of_service.post_accept_tos(carsharing_customer)
     assert response.status_code == 200
 
     # GET MiV doc specifications
-    response = miv_document_specifications.get_miv_document_specifications(auth_token)
+    response = miv_document_specifications.get_miv_document_specifications(carsharing_customer)
     assert response.status_code == 200
     print(response.json())
 

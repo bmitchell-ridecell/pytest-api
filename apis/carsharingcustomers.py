@@ -14,19 +14,16 @@ def post_carsharingcustomer(email, password, phone_number):
     return response
 
 
-def post_random_carsharingcustomer():
-    email = "brad+pytest" + config.rand_x_digit_num(5) + "@ridecell.com",
-    password = config.get('default_password')
-    phone_number = config.rand_x_digit_num(10, False)
-    response = post_carsharingcustomer(email, password, phone_number)
+def post_random_carsharingcustomer(customer):
+    response = post_carsharingcustomer(customer.email, customer.password, customer.phone_number)
     return response
 
 
-def patch_carsharingcustomer(customer_id, auth_token, first_name, last_name, pin_number):
-    jwt_headers = {'Authorization': 'JWT {}'.format(auth_token)}
-    values = {"first_name": first_name,
-              "last_name": last_name,
-              "pin_number": pin_number}
-    response = requests.patch(carsharingcustomers_url+"/"+str(customer_id), data=values, headers=jwt_headers)
+def patch_carsharingcustomer(customer, customer2):
+    jwt_headers = {'Authorization': 'JWT {}'.format(customer.auth_token)}
+    values = {"first_name": customer2.first_name,
+              "last_name": customer2.last_name,
+              "pin_number": customer2.pin_number}
+    response = requests.patch(carsharingcustomers_url+"/"+str(customer.customer_id), data=values, headers=jwt_headers)
     logger.logg("PATCH carsharingcustomers complete, status code: " + str(response.status_code))
     return response
