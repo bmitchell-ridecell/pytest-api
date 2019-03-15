@@ -26,6 +26,4 @@ def patch_carsharingcustomer(customer, customer2):
               "pin_number": customer2.pin_number}
     response = requests.patch(carsharingcustomers_url+"/"+str(customer.customer_id), data=values, headers=jwt_headers)
     logger.logg("PATCH carsharingcustomers complete, status code: " + str(response.status_code))
-    assert response.status_code == 200
-
-    return customer
+    return response

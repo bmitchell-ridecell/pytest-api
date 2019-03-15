@@ -7,5 +7,5 @@ def post_fake_stripe_card(customer):
     values = {"stripe_token": "tok_visa"}
     jwt_headers = {'Authorization': 'JWT {}'.format(customer.auth_token)}
     response = requests.post(cards_url, data=values, headers=jwt_headers)
-    assert response.status_code == 201
-    return customer
+
+    return response

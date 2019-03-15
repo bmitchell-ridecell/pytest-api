@@ -14,13 +14,7 @@ def post_random_drivers_license(customer):
               "license_number": random_drivers_license()}
     jwt_headers = {'Authorization': 'JWT {}'.format(customer.auth_token)}
     response = requests.post(drivers_license_url, data=values, headers=jwt_headers)
-    assert response.status_code == 200
-
-    drivers_license_number = int(response.json()['license']['license_number'])
-    assert drivers_license_number > 0
-
-    customer.driver_license_number = drivers_license_number
-    return customer
+    return response
 
 
 def put_drivers_license_verified(customer):
@@ -32,10 +26,7 @@ def put_drivers_license_verified(customer):
               "is_license_verified": True}
     jwt_headers = {'Authorization': 'JWT {}'.format(customer.auth_token)}
     response = requests.post(drivers_license_url, data=values, headers=jwt_headers)
-    is_license_verified = int(response.json()['license']['is_license_verified'])
-    assert is_license_verified == 1
-    customer.is_license_verified = is_license_verified
-    return customer
+    return response
 
 
 def random_drivers_license():
