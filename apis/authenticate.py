@@ -7,7 +7,9 @@ authenticate_url = config.get('base_url') + '/api/v2/authenticate/'
 
 def auth_token(customer):
     response = post_authenticate(customer.username, customer.password)
-    return response.json()['auth_token']
+    auth_token = response.json()['auth_token']
+    customer.auth_token = auth_token
+    return customer
 
 
 def post_authenticate(username, password):

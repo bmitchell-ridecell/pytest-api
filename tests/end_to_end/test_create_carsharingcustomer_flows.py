@@ -19,9 +19,8 @@ def test_create_carsharing_customer_MIV_express_us():
     carsharing_customer.customer_id = response.json()['id']
 
     # Get auth token
-    auth_token = authenticate.auth_token(carsharing_customer)
-    assert auth_token is not None
-    carsharing_customer.auth_token = auth_token
+    carsharing_customer = authenticate.auth_token(carsharing_customer)
+    assert carsharing_customer.auth_token is not None
 
     carsharing_customer2 = factory.create_random_customer("medium_carsharing")
     # Add first, last name
