@@ -12,7 +12,7 @@ def test_existing_customer_get_auth_token():
 
 
 def test_non_user_cannot_get_auth_token():
-    random_customer = factory.create_random_customer("carsharing_minimal")
+    random_customer = factory.create_random_customer("medium_carsharing")
     response = authenticate.post_authenticate(random_customer.username, random_customer.password)
     assert response.status_code == 400
 

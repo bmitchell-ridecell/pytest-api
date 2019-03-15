@@ -1,8 +1,5 @@
 from apis import address, accept_terms_of_service, authenticate, carsharingcustomers, miv_document_specifications, \
     cards, drivers_licence
-from configs import config
-import json
-
 from factories import factory
 
 ###############################################################################
@@ -16,7 +13,7 @@ from factories import factory
 
 def test_create_carsharing_customer_MIV_express_us():
 
-    carsharing_customer = factory.create_random_customer("carsharing_full")
+    carsharing_customer = factory.create_random_customer("full_carsharing")
     # POST carsharing customer
     response = carsharingcustomers.post_random_carsharingcustomer(carsharing_customer)
     carsharing_customer.customer_id = response.json()['id']
@@ -26,7 +23,7 @@ def test_create_carsharing_customer_MIV_express_us():
     assert auth_token is not None
     carsharing_customer.auth_token = auth_token
 
-    carsharing_customer2 = factory.create_random_customer("carsharing_minimal")
+    carsharing_customer2 = factory.create_random_customer("medium_carsharing")
     # Add first, last name
     response = carsharingcustomers.patch_carsharingcustomer(carsharing_customer, carsharing_customer2)
     assert response.status_code == 200

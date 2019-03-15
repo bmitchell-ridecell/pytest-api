@@ -12,10 +12,12 @@ class CustomerFactory:
 
     @staticmethod
     def get_factory(factory_type):
-        if factory_type == "carsharing_minimal":
+        if factory_type == "minimal_carsharing_":
             return MinimalCarSharingCustomerFactory()
-        elif factory_type == "carsharing_full":
-            return CarSharingCustomerFactory()
+        elif factory_type == "medium_carsharing":
+            return MediumCarSharingCustomerFactory()
+        elif factory_type == "full_carsharing":
+            return FullCarSharingCustomerFactory()
         elif factory_type == "ridesharing":
             return RideSharingCustomerFactory()
         else:
@@ -29,13 +31,22 @@ class MinimalCarSharingCustomerFactory(CustomerFactory):
     email = "brad+pytest" + config.rand_x_digit_num(5) + "@ridecell.com"
     password = config.get('default_password')
     username = email
+
+
+class MediumCarSharingCustomerFactory(CustomerFactory):
+    class Meta:
+        model = Customer
+
+    email = "brad+pytest" + config.rand_x_digit_num(5) + "@ridecell.com"
+    password = config.get('default_password')
+    username = email
     phone_number = config.rand_x_digit_num(10, False)
     first_name = fake.first_name()
     last_name = fake.last_name()
     pin_number = ""
 
 
-class CarSharingCustomerFactory(CustomerFactory):
+class FullCarSharingCustomerFactory(CustomerFactory):
     class Meta:
         model = Customer
 
