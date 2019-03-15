@@ -20,45 +20,31 @@ def test_create_carsharing_customer_MIV_express_us():
 
     # Get auth token
     carsharing_customer = authenticate.auth_token(carsharing_customer)
-    assert carsharing_customer.auth_token is not None
 
+    # create random customer2, patch customer with customer2's data
     carsharing_customer2 = factory.create_random_customer("medium_carsharing")
-    # Add first, last name
-    response = carsharingcustomers.patch_carsharingcustomer(carsharing_customer, carsharing_customer2)
-    assert response.status_code == 200
+    carsharing_customer = carsharingcustomers.patch_carsharingcustomer(carsharing_customer, carsharing_customer2)
 
     # Add credit card
-    response = cards.post_fake_stripe_card(carsharing_customer)
-    assert response.status_code == 201
+    carsharing_customer = cards.post_fake_stripe_card(carsharing_customer)
 
     # Add drivers license
-    response = drivers_licence.post_random_drivers_license(carsharing_customer)
-    assert response.status_code == 200
-    print(response.json())
-    assert int(response.json()['license']['license_number']) > 0
-    assert int(response.json()['license']['is_license_verified']) == 0
-    carsharing_customer.driver_license_number = int(response.json()['license']['license_number'])
+    carsharing_customer = drivers_licence.post_random_drivers_license(carsharing_customer)
 
     # PUT license verified
-    response = drivers_licence.put_drivers_license_verified(carsharing_customer)
-    print(response.json())
-    assert int(response.json()['license']['is_license_verified']) == 1
+    carsharing_customer = drivers_licence.put_drivers_license_verified(carsharing_customer)
+
     # TODO does/should this require admin user auth token?
 
     # POST Address
-    response = address.post_address(carsharing_customer)
-    assert response.status_code == 200
+    carsharing_customer = address.post_address(carsharing_customer)
 
     # POST Accept ToS
-    response = accept_terms_of_service.post_accept_tos(carsharing_customer)
-    assert response.status_code == 200
+    carsharing_customer = accept_terms_of_service.post_accept_tos(carsharing_customer)
 
     # GET MiV doc specifications
     response = miv_document_specifications.get_miv_document_specifications(carsharing_customer)
     assert response.status_code == 200
-    print(response.json())
-
-    # POST MiV docs
 
 
 
