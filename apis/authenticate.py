@@ -5,9 +5,9 @@ from configs import config
 authenticate_url = config.get('base_url') + '/api/v2/authenticate/'
 
 
-def auth_token(username, password):
-    response = post_authenticate(username, password)
-    return response.json()['auth_token']
+def auth_token(customer):
+    response = post_authenticate(customer.username, customer.password)
+    return response
 
 
 def post_authenticate(username, password):
